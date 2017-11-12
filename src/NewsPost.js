@@ -10,52 +10,54 @@ function getCommentId () {
 
 class NewsPost extends Component {
   state = {
-    newValue: ''
+    commentInput: '',
+    comments: []
   }
 
   handleChange = (e) => {
-    this.setState({ newValue: e.target.value })
+    this.setState({ commentInput: e.target.value })
   }
 
   handleKeyDown = (e) => {
     if (e.keyCode === 13) {
-      const { addComment, id } = this.props;
+      const { commentInput, comments } = this.state
+
       const newComment = {
-        text: this.state.newValue,
+        text: commentInput,
         id: getCommentId()
       };
 
-      addComment(newComment, id)
-
       this.setState({
-        newValue: '',
+        commentInput: '',
+        comments: [...comments, newComment]
       });
     }
   }
 
-  handleDelete = () => {
-    const { id, deleteComment } = this.props
-
-    deleteComment(id)
+  handleDelete = (id) => {
+    this.setState({
+      comments: this.state.comments.filter((comment) => comment.id !== id)
+    })
   }
 
   render () {
-    const { text, comments, deleteComment } = this.props
+    const { text } = this.props
+    const { commentInput, comments } = this.state
 
     return (
       <div>
         <p>{text}</p>
-        <span className="delete" onClick={this.handleDelete}>УДАЛИТЬ</span>
         {comments.map((comment) => {
           return (
             <Comment key={comment.id}
                      id={comment.id}
                      text={comment.text}
-                     onDelete={deleteComment} />
+                     onDelete={this.handleDelete} />
           )
         })}
         <input type="text"
-               value={this.state.newValue}
+               placeholder="Добавить комментарий"
+               value={commentInput}
                onChange={this.handleChange}
                onKeyDown={this.handleKeyDown} />
       </div>

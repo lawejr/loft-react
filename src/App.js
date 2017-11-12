@@ -23,54 +23,31 @@ class App extends Component {
       const { newsInput, news } = this.state;
       const newPost = {
         text: newsInput,
-        id: getNewsId(),
-        comments: []
+        id: getNewsId()
       };
 
       this.setState({
-        inputValue: '',
+        newsInput: '',
         news: [...news, newPost]
       });
     }
-  }
-
-  addComment = (comment, newsId) => {
-    this.setState({
-      news: this.state.news.map((newsItem) => {
-        return newsItem.id === newsId
-          ? {
-            ...newsItem,
-            comments: [...newsItem.comments, comment]
-          }
-          : newsItem
-      })
-    })
-  }
-
-  deleteComment = (id) => {
-    this.setState({
-      news: this.state.news.filter((newsItem) => newsItem.id !== id)
-    })
   }
 
   render () {
     const { newsInput, news } = this.state;
 
     return (
-      <div className='App'>
+      <div className="App">
         <input type="text"
+               placeholder="Добавить новость"
                value={newsInput}
                onChange={this.handleChange}
                onKeyDown={this.handleKeyDown} />
         {news.map((newsItem) => {
           return (
             <NewsPost
-              key={newsItem.id}
-              id={newsItem.id}
+              key={newsItem.text}
               text={newsItem.text}
-              comments={newsItem.comments}
-              addComment={this.addComment}
-              deleteComment={this.deleteComment}
             />
           )
         })}
