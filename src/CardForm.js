@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Title from './Title';
 import './CardForm.css';
 
 export class CardForm extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
 
     this.state = {
@@ -12,26 +12,38 @@ export class CardForm extends Component {
     props.onChangeTimeOver(false);
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.id = setInterval(() => {
       const leftTime = Math.max(this.state.leftTime - 1, 0);
-      this.setState({leftTime});
+      this.setState({ leftTime });
       if (leftTime === 0 && this.state.leftTime === 1) {
         this.props.onChangeTimeOver(true);
       }
     }, 1000);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     clearInterval(this.id);
   }
 
-  render() {
-    const {leftTime} = this.state;
+  handleChangeForm = (e) => {
+    const { name, value } = e.target
+
+    this.props.onChangeForm(name, value)
+  }
+
+  render () {
+    const { leftTime } = this.state;
     return (
       <div>
         <Title>Номер карты</Title>
         <p className="left-time">Осталось {leftTime} секунд</p>
+        <div className="card-form">
+          <input type="text"
+                 name="cardNumber"
+                 placeholder="1234 5678 9012 3456"
+                 onChange={this.handleChangeForm} />
+        </div>
       </div>
     );
   }
