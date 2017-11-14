@@ -9,6 +9,14 @@ class Switcher extends Component {
     selectedChild: 0
   }
 
+  componentDidMount () {
+    if (window.location.hash) {
+      const childIndex = React.Children.toArray(this.props.children).findIndex((child) => child.type.name === window.location.hash.slice(1))
+
+      if (childIndex !== -1) this.setState({ selectedChild: childIndex })
+    }
+  }
+
   handleChangeChild = (e) => {
     this.setState({
       selectedChild: parseInt(e.target.getAttribute('data-id'), 10)
@@ -23,13 +31,14 @@ class Switcher extends Component {
       <div>
         <nav>
           {React.Children.map(children, (child, ndx) => (
-            <button
+            <a
+              href={`#${child.type.name}`}
               className="component-list__name"
               onClick={this.handleChangeChild}
               key={child.type.name}
               data-id={ndx}>
               {child.type.displayName ? child.type.displayName : child.type.name}
-            </button>)
+            </a>)
           )}
         </nav>
         <section>
