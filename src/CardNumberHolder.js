@@ -1,10 +1,23 @@
-import {Component} from 'react';
+import React, { Component } from 'react';
+import CardNumberInput from './CardNumberInput'
 
 class CardNumberHolder extends Component {
   static displayName = 'Card number formating'
 
-  render() {
-    return 'Input';
+  state = {
+    cardNumber: ''
+  }
+
+  handleChange = (value) => {
+    this.setState({ cardNumber: value })
+  }
+
+  render () {
+    return (
+      <div>
+        <CardNumberInput cardNumber={this.state.cardNumber} onChange={this.handleChange} />
+      </div>
+    );
   }
 }
 
