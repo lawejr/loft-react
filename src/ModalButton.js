@@ -1,8 +1,10 @@
 import {Component} from 'react';
 
 class ModalButton extends Component {
+  static displayName = 'Modal Button'
+
   render() {
-    return null;
+    return 'Button';
   }
 }
 

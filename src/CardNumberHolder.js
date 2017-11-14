@@ -1,8 +1,10 @@
 import {Component} from 'react';
 
 class CardNumberHolder extends Component {
+  static displayName = 'Card number formating'
+
   render() {
-    return null;
+    return 'Input';
   }
 }
 
