@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class CardNumberInput extends Component {
   state = {
@@ -35,8 +35,8 @@ class CardNumberInput extends Component {
   render () {
     return <input type="text"
                   value={this.state.number}
-                  onChange={this.handleChange} />;
+                  onChange={this.handleChange} />
   }
 }
 
-export default CardNumberInput;
+export default CardNumberInput
