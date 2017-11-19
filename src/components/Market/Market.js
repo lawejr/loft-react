@@ -1,12 +1,15 @@
-import React, {Component} from 'react';
-import './Market.css';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { createOrder, moveOrderToFarm } from '../../actions/marketActions'
+import { getMarketOrders } from '../../reducers/selectors'
 
-import {connect} from 'react-redux';
-let id = 0;
+import './Market.css'
+
+let id = 0
 const getId = () => {
-  id += 1;
-  return id;
-};
+  id += 1
+  return id
+}
 export const vegetables = [
   'Капуста',
   'Редиска',
@@ -20,7 +23,7 @@ export const vegetables = [
   'Перец',
   'Картофель',
   'Редька'
-];
+]
 
 const getNewOrder = () => {
   return {
@@ -28,17 +31,52 @@ const getNewOrder = () => {
     name: vegetables[Math.floor(Math.random() * vegetables.length)],
     price: 100 + Math.floor(Math.random() * 100),
     createdAt: new Date()
-  };
-};
-
-export class Market extends Component {
-  render() {
-    return <div />;
   }
 }
 
-const mapStateToProps = state => ({});
+export class Market extends Component {
+  createOrder = () => {
+    this.props.createOrder(getNewOrder())
+  }
 
-const mapDispatchToProps = {};
+  moveLastOrderToFarm = () => {
+    const { orders } = this.props
 
-export default connect(mapStateToProps, mapDispatchToProps)(Market);
+    this.props.moveOrderToFarm(orders[orders.length - 1])
+  }
+
+  render () {
+    const { orders } = this.props
+
+    return (
+      <div className="market">
+        <h2>Новые заказы в магазине</h2>
+        <button onClick={this.createOrder}>Создать заказ</button>
+        <button onClick={this.moveLastOrderToFarm} disabled={!orders.length}>Отправить заказ на ферму
+        </button>
+        <ul className="orders-list">
+          {
+            orders.map((order) => (
+              <li className="order-item" key={order.id}>
+                <h3>Название: {order.name}</h3>
+                <div>Цена: {order.price}</div>
+                <div>Создан: {order.createdAt.toDateString()}</div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = state => ({
+  orders: getMarketOrders(state)
+})
+
+const mapDispatchToProps = {
+  createOrder,
+  moveOrderToFarm
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Market)
