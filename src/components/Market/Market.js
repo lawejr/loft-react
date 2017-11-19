@@ -4,6 +4,7 @@ import { createOrder, moveOrderToFarm } from '../../actions/marketActions'
 import { getMarketOrders } from '../../reducers/selectors'
 
 import './Market.css'
+import Order from '../Order'
 
 let id = 0
 const getId = () => {
@@ -34,7 +35,7 @@ const getNewOrder = () => {
   }
 }
 
-export class Market extends Component {
+class Market extends Component {
   createOrder = () => {
     this.props.createOrder(getNewOrder())
   }
@@ -52,15 +53,14 @@ export class Market extends Component {
       <div className="market">
         <h2>Новые заказы в магазине</h2>
         <button onClick={this.createOrder}>Создать заказ</button>
-        <button onClick={this.moveLastOrderToFarm} disabled={!orders.length}>Отправить заказ на ферму
+        <button onClick={this.moveLastOrderToFarm} disabled={!orders.length}>
+          Отправить заказ на ферму
         </button>
         <ul className="orders-list">
           {
             orders.map((order) => (
               <li className="order-item" key={order.id}>
-                <h3>Название: {order.name}</h3>
-                <div>Цена: {order.price}</div>
-                <div>Создан: {order.createdAt.toDateString()}</div>
+                <Order order={order} />
               </li>
             ))
           }
