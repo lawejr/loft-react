@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { searchRequest } from '../actions/search'
 
@@ -30,11 +31,13 @@ class Search extends PureComponent {
         <button type="button" onClick={this.handleSearchBtnClick}>Найти</button>
         {
           isFetching
-          ? <div>Загрузка...</div>
-          : <div className="results">
+            ? <p>Загрузка...</p>
+            : <div className="results">
               {films.map((film) => (
                 <article className="results-item" key={film.id}>
-                  <a href={`/show/${film.id}`}>{film.name}</a>
+                  <h3>
+                    <Link to={`/shows/${film.id}`}>{film.name}</Link>
+                  </h3>
                   {film.image &&
                   <img src={film.image.original} alt={film.name} />}
                   <div dangerouslySetInnerHTML={{ __html: film.summary }} />
