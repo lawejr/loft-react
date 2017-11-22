@@ -1,23 +1,23 @@
 import { handleActions } from 'redux-actions'
-import { searchRequest, searchSuccess, searchFailure } from '../actions/search'
+import { showRequest, showSuccess, showFailure } from '../actions/shows'
 
 export default handleActions({
-    [searchRequest]: (state) => ({
+    [showRequest]: (state) => ({
       ...state,
       isFetching: true
     }),
-    [searchSuccess]: (state, { payload }) => ({
+    [showSuccess]: (state, { payload }) => ({
       ...state,
       isFetching: false,
-      results: payload
+      film: payload
     }),
-    [searchFailure]: (state) => ({
+    [showFailure]: (state) => ({
       ...state,
       isFetching: false
     })
   },
   {
     isFetching: false,
-    results: []
+    film: {}
   }
 )
