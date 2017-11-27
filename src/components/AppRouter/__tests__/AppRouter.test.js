@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import { AppRouter } from '../index'
 import { PrivateRoute } from '../../PrivateRoute'
 

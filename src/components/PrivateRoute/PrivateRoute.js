@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getToken } from '../../reducers/auth'
+// import { getToken } from '../../reducers/auth'
 
 class ProvateRouteClass extends PureComponent {
   render () {
@@ -21,5 +21,6 @@ class ProvateRouteClass extends PureComponent {
 }
 
 export const PrivateRoute = connect(state => ({
-  token: getToken(state)
+  token: true
+  // token: getToken(state)
 }))(ProvateRouteClass)
