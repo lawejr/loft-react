@@ -1,16 +1,25 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { Route, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { getToken } from '../../reducers/auth'
 
-export const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={(props) => isAuthenticated === true
-        ? <Component {...props} />
-        : <Redirect to={{
-          pathname: '/login',
-          state: { from: props.location }
-        }} />}
-    />
-  )
+class ProvateRouteClass extends PureComponent {
+  render () {
+    const { token, component: Component, ...rest } = this.props
+
+    return (
+      <Route
+        {...rest}
+        render={props => (
+          token
+            ? <Component {...props} />
+            : <Redirect to="/login" />
+        )}
+      />
+    )
+  }
 }
+
+export const PrivateRoute = connect(state => ({
+  token: getToken(state)
+}))(ProvateRouteClass)
