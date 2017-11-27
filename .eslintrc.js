@@ -2,7 +2,7 @@
 
 module.exports = {
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-  extends: 'standard',
+  extends: ['standard', 'plugin:react/recommended'],
   env: {
     es6: true,
     browser: true
