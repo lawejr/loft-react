@@ -1,14 +1,16 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 import { Followers } from '../Followers'
 import { Spinner } from '../Spinner'
+import { fetchUserRequest } from '../../actions/users'
 
-export class UserPage extends PureComponent {
+class UserPageClass extends PureComponent {
   componentDidMount () {
-
+    this.props.fetchUserRequest(this.props.match.params.name)
   }
 
   componentWillReceiveProps (nextProps) {
-
+    this.props.fetchUserRequest(nextProps.match.params.name)
   }
 
   renderContent () {
@@ -45,3 +47,13 @@ export class UserPage extends PureComponent {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.users.data
+})
+
+const mapDispatchToProps = {
+  fetchUserRequest
+}
+
+export const UserPage = connect(mapStateToProps, mapDispatchToProps)(UserPageClass)
