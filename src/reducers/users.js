@@ -6,7 +6,7 @@ import {
 } from '../actions/users'
 
 export default handleActions({
-    [fetchUserRequest]: (state, {payload}) => ({
+    [fetchUserRequest]: (state, { payload }) => ({
       ...state,
       isFetching: true,
       login: payload,
@@ -31,3 +31,6 @@ export default handleActions({
     data: null
   }
 )
+
+export const getUserData = (state) => state.users.data
+export const getIsFetching = (state) => state.users.isFetching

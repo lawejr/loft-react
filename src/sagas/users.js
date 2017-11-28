@@ -10,7 +10,7 @@ import {
 } from '../actions/users'
 import { getUserInformation } from '../api'
 
-function* onFetchUserRequest ({ payload }) {
+export function* fetchUserSaga ({ payload }) {
   try {
     const userData = yield call(getUserInformation, payload)
     yield put(fetchUserSuccess(userData))
@@ -20,5 +20,5 @@ function* onFetchUserRequest ({ payload }) {
 }
 
 export function* fetchUserWatch () {
-  yield takeLatest(fetchUserRequest, onFetchUserRequest)
+  yield takeLatest(fetchUserRequest, fetchUserSaga)
 }

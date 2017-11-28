@@ -3,14 +3,17 @@ import { connect } from 'react-redux'
 import { Followers } from '../Followers'
 import { Spinner } from '../Spinner'
 import { fetchUserRequest } from '../../actions/users'
+import { getUserData, getIsFetching } from '../../reducers/users'
 
-class UserPageClass extends PureComponent {
+export class UserPageClass extends PureComponent {
   componentDidMount () {
     this.props.fetchUserRequest(this.props.match.params.name)
   }
 
   componentWillReceiveProps (nextProps) {
-    this.props.fetchUserRequest(nextProps.match.params.name)
+    if (this.props.match.params.name !== nextProps.match.params.name) {
+      this.props.fetchUserRequest(nextProps.match.params.name)
+    }
   }
 
   renderContent () {
@@ -21,13 +24,13 @@ class UserPageClass extends PureComponent {
     } else {
       return (
         <div className="content">
-          <img className="avatar" src={user.avatar} alt={user.login} />
+          <img className="avatar" src={user.avatar_url} alt={user.login} />
           <p className="login">{user.login}</p>
-          <p className="followers-count">
-            Followers: <span className="counter">{user.followers ? user.followers.length : 0}</span>
+          <p className="followers-count">Followers:
+            <span className="counter">{user.followers}</span>
           </p>
-          <p className="repos-count">Public
-            repos: <span className="counter">{user.repos ? user.repos.length : 0}</span>
+          <p className="repos-count">Public repos:
+            <span className="counter">{user.public_repos}</span>
           </p>
           <Followers login={user.login} />
         </div>
@@ -48,8 +51,9 @@ class UserPageClass extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.users.data
+const mapStateToProps = (state) => ({
+  user: getUserData(state),
+  isFetching: getIsFetching(state)
 })
 
 const mapDispatchToProps = {

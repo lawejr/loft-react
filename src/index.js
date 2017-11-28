@@ -11,7 +11,7 @@ const store = createStore()
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
-      <AppRouter />
+      <AppRouter isAuthenticated={store.getState().auth.token} />
     </Provider>
   </BrowserRouter>,
   document.getElementById('root')

@@ -1,9 +1,12 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { UserPage } from '../index'
+import { UserPageClass as UserPage } from '../index'
 
 describe('Методы класс', () => {
-  const wrapper = shallow(<UserPage />)
+  const wrapper = shallow(<UserPage
+    match={{params: {name: 'test-name'}}}
+    fetchUserRequest={jest.fn()}
+  />)
 
   it('Присутствует componentDidMount', () => {
     expect(wrapper.instance().componentDidMount).toBeDefined()
@@ -32,22 +35,22 @@ describe('Методы класс', () => {
     describe('Если user существует - должны отображаться', () => {
       const user = {
         login: 'login',
-        avatar: 'http://via.placeholder.com/300x300',
-        followers: ['1', '2'],
-        repos: ['r1', 'r2']
+        avatar_url: 'http://via.placeholder.com/300x300',
+        followers: '10',
+        public_repos: '22'
       }
 
       it('avatar', () => {
         wrapper.setProps({
           user: {
-            avatar: user.avatar
+            avatar_url: user.avatar_url
           }
         })
 
         const avatarNode = wrapper.find('img.avatar')
 
         expect(avatarNode).toHaveLength(1)
-        expect(avatarNode.prop('src')).toEqual(user.avatar)
+        expect(avatarNode.prop('src')).toEqual(user.avatar_url)
       })
 
       it('login', () => {
@@ -73,20 +76,20 @@ describe('Методы класс', () => {
         const followersCounterNode = wrapper.find('p.followers-count .counter')
 
         expect(followersCounterNode).toHaveLength(1)
-        expect(followersCounterNode.text()).toEqual(user.followers.length.toString())
+        expect(followersCounterNode.text()).toEqual(user.followers)
       })
 
       it('количество публичных репозиториев', () => {
         wrapper.setProps({
           user: {
-            repos: user.repos
+            public_repos: user.public_repos
           }
         })
 
         const reposCounter = wrapper.find('p.repos-count .counter')
 
         expect(reposCounter).toHaveLength(1)
-        expect(reposCounter.text()).toEqual(user.repos.length.toString())
+        expect(reposCounter.text()).toEqual(user.public_repos)
       })
 
       it('компонент Followers с передачей user.login через props', () => {
