@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 import { Followers } from '../Followers'
 import { Spinner } from '../Spinner'
 import { fetchUserRequest } from '../../actions/users'
-import { getUserData, getIsFetching } from '../../reducers/users'
+import { getUserData, getUserIsFetching } from '../../reducers/users'
 
 export class UserPageClass extends PureComponent {
+  static displayName = 'UserPage'
+
   componentDidMount () {
     this.props.fetchUserRequest(this.props.match.params.name)
   }
@@ -23,7 +25,7 @@ export class UserPageClass extends PureComponent {
       return <p className="error">Пользователя не существует</p>
     } else {
       return (
-        <div className="content">
+        <div className="UserPage">
           <img className="avatar" src={user.avatar_url} alt={user.login} />
           <p className="login">{user.login}</p>
           <p className="followers-count">Followers:
@@ -39,21 +41,15 @@ export class UserPageClass extends PureComponent {
   }
 
   render () {
-    return (
-      <div className="UserPage">
-        {
-          this.props.isFetching
-            ? <Spinner />
-            : this.renderContent()
-        }
-      </div>
-    )
+    return this.props.isFetching
+      ? <Spinner />
+      : this.renderContent()
   }
 }
 
 const mapStateToProps = (state) => ({
   user: getUserData(state),
-  isFetching: getIsFetching(state)
+  isFetching: getUserIsFetching(state)
 })
 
 const mapDispatchToProps = {

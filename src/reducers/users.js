@@ -37,4 +37,4 @@ export default handleActions({
 )
 
 export const getUserData = (state) => state.users.data
-export const getIsFetching = (state) => state.users.isFetching
+export const getUserIsFetching = (state) => state.users.isFetching

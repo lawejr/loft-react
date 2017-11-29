@@ -4,6 +4,8 @@ import { setToken } from '../../actions/auth'
 import { withRouter } from 'react-router-dom'
 
 class AuthPageClass extends PureComponent {
+  static displayName = 'AuthPage'
+
   changeToken = (e) => {
     const { value } = this.tokenInput
     const { setToken, history } = this.props
