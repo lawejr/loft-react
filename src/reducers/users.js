@@ -10,18 +10,22 @@ export default handleActions({
       ...state,
       isFetching: true,
       login: payload,
-      data: null
+      data: null,
+      error: null
     }),
     [fetchUserSuccess]: (state, { payload }) => ({
       ...state,
       isFetching: false,
       isFetched: true,
-      data: payload
+      data: payload,
+      error: null
     }),
-    [fetchUserFailure]: (state) => ({
+    [fetchUserFailure]: (state, { error }) => ({
       ...state,
       isFetching: false,
-      isFetched: true
+      isFetched: true,
+      data: null,
+      error: error
     })
   },
   {
