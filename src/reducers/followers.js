@@ -6,10 +6,9 @@ import {
 } from '../actions/users'
 
 export default handleActions({
-    [fetchFollowersRequest]: (state, { payload }) => ({
+    [fetchFollowersRequest]: (state) => ({
       ...state,
       isFetching: true,
-      login: payload,
       data: null,
       error: null
     }),
@@ -31,7 +30,6 @@ export default handleActions({
   {
     isFetching: false,
     isFetched: false,
-    login: null,
     data: null
   }
 )
