@@ -1,11 +1,11 @@
-import {setToken} from '../actions/auth';
-import {takeLatest} from 'redux-saga/effects';
-import {setTokenToApi} from '../api';
+import { call, takeLatest } from 'redux-saga/effects'
+import { setToken } from '../actions/auth'
+import { setTokenToApi } from '../api'
 
-function setTokenSaga(action) {
-  setTokenToApi(action.payload);
+export function* setTokenSaga ({ payload }) {
+  yield call(setTokenToApi, payload)
 }
 
-export function* setTokenWatch() {
-  yield takeLatest(setToken, setTokenSaga);
+export function* setTokenWatch () {
+  yield takeLatest(setToken, setTokenSaga)
 }
