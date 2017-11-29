@@ -28,12 +28,10 @@ export class UserPageClass extends PureComponent {
         <div className="UserPage">
           <img className="avatar" src={user.avatar_url} alt={user.login} />
           <p className="login">{user.login}</p>
-          <p className="followers-count">Followers:
-            <span className="counter"> {user.followers}</span>
-          </p>
-          <p className="repos-count">Public repos:
-            <span className="counter"> {user.public_repos}</span>
-          </p>
+          <p className="followers-count">Followers: <span
+            className="counter">{user.followers}</span></p>
+          <p className="repos-count">Public repos: <span
+            className="counter">{user.public_repos}</span></p>
           <Followers login={user.login} />
         </div>
       )

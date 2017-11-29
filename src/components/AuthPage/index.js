@@ -1,1 +1,1 @@
-export { AuthPage } from './AuthPage'
+export { AuthPage, AuthPageClass } from './AuthPage'

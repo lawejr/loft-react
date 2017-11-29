@@ -1,1 +1,1 @@
-export { Followers } from './Followers'
+export { Followers, FollowersClass } from './Followers'
