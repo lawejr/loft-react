@@ -7,5 +7,9 @@ module.exports = {
     es6: true,
     browser: true
   },
-  plugins: ['react']
+  plugins: ['react'],
+  parser: 'babel-eslint',
+  rules: {
+    'generator-star-spacing': ['error', { before: false, after: true }]
+  }
 }
