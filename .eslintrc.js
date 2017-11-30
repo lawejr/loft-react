@@ -5,7 +5,8 @@ module.exports = {
   extends: ['standard', 'plugin:react/recommended'],
   env: {
     es6: true,
-    browser: true
+    browser: true,
+    jest: true
   },
   plugins: ['react'],
   parser: 'babel-eslint',

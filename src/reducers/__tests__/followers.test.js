@@ -27,27 +27,28 @@ describe('Reducer followers', () => {
   })
 
   describe('экшен fetchFollowersSuccess', () => {
+    const testPayload = { data: 'user' }
+
     it('изменяет флаг isFetching на false', () => {
-      const next = followers({ isFetching: true }, fetchFollowersSuccess())
+      const next = followers({ isFetching: true }, fetchFollowersSuccess(testPayload))
 
       expect(next.isFetching).toBeFalsy()
     })
 
     it('изменяет флаг isFetched на true', () => {
-      const next = followers({ isFetched: false }, fetchFollowersSuccess())
+      const next = followers({ isFetched: false }, fetchFollowersSuccess(testPayload))
 
       expect(next.isFetched).toBeTruthy()
     })
 
     it('заполняет поле data полученными данными', () => {
-      const testPayload = 'user'
       const next = followers(null, fetchFollowersSuccess(testPayload))
 
-      expect(next.data).toEqual(testPayload)
+      expect(next.data).toEqual(testPayload.data)
     })
 
     it('очищает поле error', () => {
-      const next = followers({ error: {} }, fetchFollowersSuccess())
+      const next = followers({ error: {} }, fetchFollowersSuccess(testPayload))
 
       expect(next.error).toBe(null)
     })

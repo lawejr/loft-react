@@ -27,27 +27,28 @@ describe('Reducer users', () => {
   })
 
   describe('экшен fetchUserSuccess', () => {
+    const testPayload = { data: 'user' }
+
     it('изменяет флаг isFetching на false', () => {
-      const next = users({ isFetching: true }, fetchUserSuccess())
+      const next = users({ isFetching: true }, fetchUserSuccess(testPayload))
 
       expect(next.isFetching).toBeFalsy()
     })
 
     it('изменяет флаг isFetched на true', () => {
-      const next = users({ isFetched: false }, fetchUserSuccess())
+      const next = users({ isFetched: false }, fetchUserSuccess(testPayload))
 
       expect(next.isFetched).toBeTruthy()
     })
 
     it('заполняет поле data полученными данными', () => {
-      const testPayload = 'user'
       const next = users(null, fetchUserSuccess(testPayload))
 
-      expect(next.data).toEqual(testPayload)
+      expect(next.data).toEqual(testPayload.data)
     })
 
     it('очищает поле error', () => {
-      const next = users({ error: {} }, fetchUserSuccess())
+      const next = users({ error: {} }, fetchUserSuccess(testPayload))
 
       expect(next.error).toBe(null)
     })

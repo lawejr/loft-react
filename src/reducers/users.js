@@ -5,7 +5,8 @@ import {
   fetchUserFailure
 } from '../actions/users'
 
-export default handleActions({
+export default handleActions(
+  {
     [fetchUserRequest]: (state, { payload }) => ({
       ...state,
       isFetching: true,
@@ -36,5 +37,5 @@ export default handleActions({
   }
 )
 
-export const getUserData = (state) => state.users.data
-export const getUserIsFetching = (state) => state.users.isFetching
+export const getUserData = state => state.users.data
+export const getUserIsFetching = state => state.users.isFetching
