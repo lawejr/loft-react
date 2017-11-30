@@ -24,29 +24,29 @@
 
 ```bash
 ├── actions
-│   ├── auth.js
-│   ├── repos.js
-│   └── users.js
+│   ├── auth.js
+│   ├── repos.js
+│   └── users.js
 ├── api.js
 ├── components
-│   ├── AppRouter
-│   ├── AuthPage
-│   ├── Follower
-│   ├── Followers
-│   ├── PrivateRoute
-│   └── UserPage
+│   ├── AppRouter
+│   ├── AuthPage
+│   ├── Follower
+│   ├── Followers
+│   ├── PrivateRoute
+│   └── UserPage
 ├── index.css
 ├── index.js
 ├── reducers
-│   ├── auth.js
-│   ├── followers.js
-│   ├── index.js
-│   └── users.js
+│   ├── auth.js
+│   ├── followers.js
+│   ├── index.js
+│   └── users.js
 ├── sagas
-│   ├── auth.js
-│   ├── followers.js
-│   ├── index.js
-│   └── users.js
+│   ├── auth.js
+│   ├── followers.js
+│   ├── index.js
+│   └── users.js
 ├── setupTests.js
 └── store.js
 ```
@@ -227,3 +227,13 @@ if (isFetching) {
 ```
 
 </details>
+
+## Задачи. II часть
+
+Я добавил совсем немного, axios, работа с localstorage, что бы все время не вбивать ключ. Вам нужно
+немного, при работе с axios у вас поменяется ответ от него, нужно чучуть поменять ваши саги. +
+Теперь работа с localstorage, изучите работу саги sagas/auth.js и нужно дописать тесты для этой
+саги, один сценарий описан, нужен еще один для всех шагов =)
+
+1. Написать сценарий тестов, на тот случай, если в localstorage нет ключа.
+1. Переписать свои саги под работу с axios.
