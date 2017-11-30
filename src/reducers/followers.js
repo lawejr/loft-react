@@ -5,8 +5,9 @@ import {
   fetchFollowersFailure
 } from '../actions/users'
 
-export default handleActions({
-    [fetchFollowersRequest]: (state) => ({
+export default handleActions(
+  {
+    [fetchFollowersRequest]: state => ({
       ...state,
       isFetching: true,
       data: null,
@@ -16,7 +17,7 @@ export default handleActions({
       ...state,
       isFetching: false,
       isFetched: true,
-      data: payload,
+      data: payload.data,
       error: null
     }),
     [fetchFollowersFailure]: (state, { error }) => ({
@@ -34,5 +35,5 @@ export default handleActions({
   }
 )
 
-export const getFollowersData = (state) => state.followers.data
-export const getFollowersIsFetching = (state) => state.followers.isFetching
+export const getFollowersData = state => state.followers.data
+export const getFollowersIsFetching = state => state.followers.isFetching

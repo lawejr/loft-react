@@ -17,7 +17,7 @@ export default handleActions({
       ...state,
       isFetching: false,
       isFetched: true,
-      data: payload,
+      data: payload.data,
       error: null
     }),
     [fetchUserFailure]: (state, { error }) => ({
