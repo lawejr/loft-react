@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - 8
+
+script:
+  - npm run build
+  - npm test
+
+# scripts: true
+
+# after_success:
+#   - echo '/*  /index.html 200' > build/_redirects
+#   - chmod +x ./deploy.sh
+# - ./deploy.sh
