@@ -21,9 +21,6 @@ else
     # otherwise print last line of output, i.e. HTTP status code
     echo "Success, HTTP status is:"
     echo "$OUT" | tail -n1
-
-    # and print all but the last line, i.e. the regular response
-    echo "Response is:"
-    echo "$OUT" | head -n-1
-    echo deployed on https://pensive-murdock-a8bf74.netlify.com/
+    
+    echo Deployed on https://pensive-murdock-a8bf74.netlify.com/
 fi
