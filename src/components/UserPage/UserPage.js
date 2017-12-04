@@ -2,14 +2,21 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Followers } from '../Followers'
 import { Spinner } from '../Spinner'
-import { fetchUserRequest } from '../../actions/users'
+import { fetchUserRequest, fetchTokenOwnerRequest } from '../../actions/users'
 import { getUserData, getUserIsFetching } from '../../reducers/users'
 
 export class UserPageClass extends PureComponent {
   static displayName = 'UserPage'
 
   componentDidMount () {
-    this.props.fetchUserRequest(this.props.match.params.name)
+    const { match, fetchUserRequest, fetchTokenOwnerRequest } = this.props
+    const userName = match.params.name
+    
+    if (userName === 'me') {
+      fetchTokenOwnerRequest()
+    } else {
+      fetchUserRequest(userName)
+    }
   }
 
   componentWillReceiveProps (nextProps) {
@@ -51,7 +58,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  fetchUserRequest
+  fetchUserRequest,
+  fetchTokenOwnerRequest
 }
 
 export const UserPage = connect(mapStateToProps, mapDispatchToProps)(UserPageClass)

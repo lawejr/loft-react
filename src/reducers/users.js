@@ -2,11 +2,17 @@ import { handleActions } from 'redux-actions'
 import {
   fetchUserRequest,
   fetchUserSuccess,
-  fetchUserFailure
+  fetchUserFailure, fetchTokenOwnerRequest
 } from '../actions/users'
 
 export default handleActions(
   {
+    [fetchTokenOwnerRequest]: (state) => ({
+      ...state,
+      isFetching: true,
+      data: null,
+      error: null
+    }),
     [fetchUserRequest]: (state, { payload }) => ({
       ...state,
       isFetching: true,
@@ -33,7 +39,8 @@ export default handleActions(
     isFetching: false,
     isFetched: false,
     login: null,
-    data: null
+    data: null,
+    error: null
   }
 )
 

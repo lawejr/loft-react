@@ -6,19 +6,26 @@ import {
 import {
   fetchUserRequest,
   fetchUserSuccess,
-  fetchUserFailure
+  fetchUserFailure,
+  fetchTokenOwnerRequest
 } from '../actions/users'
-import { getUserInformation } from '../api'
+import requestFlow from './request'
+import { getUserInformation, getTokenOwner } from '../api'
 
-export function* fetchUserSaga ({ payload }) {
+export function* fetchUserSaga (action) {
   try {
-    const userData = yield call(getUserInformation, payload)
-    yield put(fetchUserSuccess(userData))
+    let response
+    if (fetchTokenOwnerRequest.toString() === action.type) {
+      response = yield call(requestFlow, getTokenOwner, action.payload)
+    } else {
+      response = yield call(requestFlow, getUserInformation, action.payload)
+    }
+    yield put(fetchUserSuccess(response))
   } catch (error) {
     yield put(fetchUserFailure(error))
   }
 }
 
 export function* fetchUserWatch () {
-  yield takeLatest(fetchUserRequest, fetchUserSaga)
+  yield takeLatest([fetchUserRequest, fetchTokenOwnerRequest], fetchUserSaga)
 }
