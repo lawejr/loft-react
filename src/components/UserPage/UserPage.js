@@ -11,7 +11,7 @@ export class UserPageClass extends PureComponent {
   componentDidMount () {
     const { match, fetchUserRequest, fetchTokenOwnerRequest } = this.props
     const userName = match.params.name
-    
+
     if (userName === 'me') {
       fetchTokenOwnerRequest()
     } else {

@@ -31,7 +31,8 @@ export default handleActions(
   {
     isFetching: false,
     isFetched: false,
-    data: null
+    data: null,
+    error: null
   }
 )
 

@@ -25,10 +25,10 @@ describe('Render', () => {
     ).toHaveLength(1)
   })
 
-  it('Присутствует редирект на "/user/lawejr"', () => {
+  it('Присутствует редирект на "/user/me"', () => {
     expect(
       wrapper.findWhere(el => el.type() === Redirect
-        && el.props().to === '/user/lawejr')
+        && el.props().to === '/user/me')
     ).toHaveLength(1)
   })
 })
