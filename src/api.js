@@ -4,12 +4,12 @@ const instance = axios.create({
   baseURL: 'https://api.github.com/'
 })
 
-export const setTokenApi = accessToken => {
-  instance.defaults.params = { accessToken }
+export const setTokenApi = access_token => {
+  instance.defaults.params = { access_token }
 }
 
 export const clearTokenApi = () => {
-  instance.defaults.params = { accessToken: undefined }
+  instance.defaults.params = { access_token: undefined }
 }
 
 export const getUserInformation = login => instance(`users/${login}`)
