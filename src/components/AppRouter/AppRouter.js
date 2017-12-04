@@ -23,7 +23,7 @@ export class AppRouter extends Component {
             Выход
           </button>)
         }
-        {networkError && <p>Ошибка: {networkError}</p>}
+        {networkError && <p className="error-message">Ошибка: {networkError}</p>}
         <Switch>
           <PrivateRoute
             path="/user/:name"
@@ -41,8 +41,8 @@ const mapStateToProps = (state) => ({
   networkError: getNetworkError(state)
 })
 
-const mapDisputchToProps = {
+const mapDispatchToProps = {
   logout
 }
 
-export default withRouter(connect(mapStateToProps, mapDisputchToProps)(AppRouter))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppRouter))

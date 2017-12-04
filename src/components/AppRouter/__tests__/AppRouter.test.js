@@ -14,7 +14,7 @@ describe('Render', () => {
   it('Присутствует компонента PrivateRoute с адресом "/user/:name"', () => {
     expect(
       wrapper.findWhere(el => el.type() === PrivateRoute
-      && el.props().path === '/user/:name')
+        && el.props().path === '/user/:name')
     ).toHaveLength(1)
   })
 
@@ -30,5 +30,11 @@ describe('Render', () => {
       wrapper.findWhere(el => el.type() === Redirect
         && el.props().to === '/user/me')
     ).toHaveLength(1)
+  })
+
+  it('Присутствует Выход, если props.isAuthorized === true', () => {
+    wrapper.setProps({ isAuthorized: true })
+
+    expect(wrapper.findWhere(el => el.type() === 'button' && el.text() === 'Выход')).toHaveLength(1)
   })
 })
