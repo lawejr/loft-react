@@ -12,7 +12,7 @@ class AuthPageClass extends PureComponent {
     if (e.keyCode === 13 && value) {
       authorize(value)
 
-      history.push('/')
+      history.push('/user/me')
     }
   }
 

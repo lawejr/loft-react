@@ -25,6 +25,7 @@ export class AppRouter extends Component {
         }
         {networkError && <p className="error-message">Ошибка: {networkError}</p>}
         <Switch>
+          <PrivateRoute path="/user/me" component={UserPage} />
           <PrivateRoute
             path="/user/:name"
             component={UserPage} />
