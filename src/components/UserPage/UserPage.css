@@ -1,0 +1,20 @@
+.UserPage {
+  width: 100%;
+  max-width: 1100px;
+}
+
+.UserPage .user-info {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.UserPage .user-info .avatar {
+  width: 250px;
+  height: 250px;
+  margin-right: 20px;
+}
+
+.UserPage .user-info .login {
+  font-size: 20px;
+}

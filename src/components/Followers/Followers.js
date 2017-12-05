@@ -2,11 +2,13 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { fetchFollowersRequest } from '../../actions/users'
 import {
-getFollowersData,
-getFollowersIsFetching
+  getFollowersData,
+  getFollowersIsFetching
 } from '../../reducers/followers'
 import { Spinner } from '../Spinner'
 import { Follower } from '../Follower/index'
+
+import './Followers.css'
 
 export class FollowersClass extends PureComponent {
   static displayName = 'Followers'
@@ -26,7 +28,9 @@ export class FollowersClass extends PureComponent {
       return (
         <ul className="Followers">
           {followers.map((fwr) => (
-            <li key={fwr.id}><Follower follower={fwr}/></li>
+            <li className="followers-item" key={fwr.id}>
+              <Follower className="Follower" follower={fwr} />
+            </li>
           ))}
         </ul>
       )

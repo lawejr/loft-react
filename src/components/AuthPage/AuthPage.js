@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { authorize } from '../../actions/auth'
 
+import './AuthPage.css'
+
 class AuthPageClass extends PureComponent {
   static displayName = 'AuthPage'
 
@@ -18,8 +20,8 @@ class AuthPageClass extends PureComponent {
 
   render () {
     return (
-      <section>
-        <div>
+      <section className="AuthPage">
+        <form className="AuthPage__form">
           <p>
             Получить токен нужно на своей странице github, перейдите по адресу
             и создать себе токен. Запишите куда нибудь токен, так как после
@@ -34,7 +36,7 @@ class AuthPageClass extends PureComponent {
             }}
           />
           <p>После ввода нажать Enter</p>
-        </div>
+        </form>
       </section>
     )
   }

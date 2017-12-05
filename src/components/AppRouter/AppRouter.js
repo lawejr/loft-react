@@ -8,6 +8,8 @@ import { logout } from '../../actions/auth'
 import { getIsAuthorized } from '../../reducers/auth'
 import { getNetworkError } from '../../reducers/network'
 
+import './App.css'
+
 export class AppRouter extends Component {
   onClickLogout = () => {
     this.props.logout()
@@ -19,7 +21,7 @@ export class AppRouter extends Component {
     return (
       <div className="App">
         {isAuthorized && (
-          <button type="button" onClick={this.onClickLogout}>
+          <button className="logout-button" type="button" onClick={this.onClickLogout}>
             Выход
           </button>)
         }

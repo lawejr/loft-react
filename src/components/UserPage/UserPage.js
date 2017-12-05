@@ -5,6 +5,8 @@ import { Spinner } from '../Spinner'
 import { fetchUserRequest, fetchTokenOwnerRequest } from '../../actions/users'
 import { getUserData, getUserIsFetching } from '../../reducers/users'
 
+import './UserPage.css'
+
 export class UserPageClass extends PureComponent {
   static displayName = 'UserPage'
 
@@ -33,12 +35,16 @@ export class UserPageClass extends PureComponent {
     } else {
       return (
         <div className="UserPage">
-          <img className="avatar" src={user.avatar_url} alt={user.login} />
-          <p className="login">{user.login}</p>
-          <p className="followers-count">Followers: <span
-            className="counter">{user.followers}</span></p>
-          <p className="repos-count">Public repos: <span
-            className="counter">{user.public_repos}</span></p>
+          <div className="user-info">
+            <img className="avatar" src={user.avatar_url} alt={user.login} />
+            <div className="stats">
+              <p className="login"><b>{user.login}</b></p>
+              <p className="followers-count">Followers: <span
+                className="counter">{user.followers}</span></p>
+              <p className="repos-count">Public repos: <span
+                className="counter">{user.public_repos}</span></p>
+            </div>
+          </div>
           <Followers login={user.login} />
         </div>
       )
