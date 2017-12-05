@@ -1,4 +1,4 @@
-# Home project: facegit
+# Home project: facegit [![Build Status](https://travis-ci.org/lawejr/loft-react.svg?branch=facegit)](https://travis-ci.org/lawejr/loft-react)
 
 [Пример первой части](http://5a19a183a6188f20378c66f1.brave-golick-d6a52f.netlify.com).
 
