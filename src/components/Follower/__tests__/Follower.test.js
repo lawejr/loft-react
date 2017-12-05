@@ -17,7 +17,7 @@ describe('Методы класс', () => {
         follower
       })
 
-      const avatarNode = wrapper.find('img.avatar')
+      const avatarNode = wrapper.find('img.follower-avatar')
 
       expect(avatarNode).toHaveLength(1)
       expect(avatarNode.prop('src')).toEqual(follower.avatar_url)
