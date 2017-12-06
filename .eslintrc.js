@@ -5,7 +5,12 @@ module.exports = {
   extends: ['standard', 'plugin:react/recommended'],
   env: {
     es6: true,
-    browser: true
+    browser: true,
+    jest: true
   },
-  plugins: ['react']
+  plugins: ['react'],
+  parser: 'babel-eslint',
+  rules: {
+    'generator-star-spacing': ['error', { before: false, after: true }]
+  }
 }
